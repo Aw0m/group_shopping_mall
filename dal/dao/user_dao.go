@@ -74,13 +74,9 @@ func getUserMap(user *bdm.User) map[string]interface{} {
 	userMap["open_id"] = user.OpenId
 	userMap["gender"] = user.Gender
 	userMap["username"] = user.Username
-	userMap["club_id"] = user.ClubId
-	userMap["intro"] = user.Intro
-	userMap["admin_type"] = user.AdminType
-	userMap["user_type"] = user.UserType
-	userMap["price"] = user.Price
-	userMap["commissions"] = user.Commissions
-	userMap["avatar_url"] = user.AvatarURL
+	userMap["avatar_url"] = user.AvatarUrl
+	userMap["phone_num"] = user.PhoneNum
+	userMap["address_id"] = user.AddressId
 	return userMap
 }
 

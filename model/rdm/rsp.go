@@ -6,3 +6,7 @@ type WXLoginResponse struct {
 	Token string   `json:"token"`
 	User  bdm.User `json:"user"`
 }
+
+type GetUserinfoRsp struct {
+	User bdm.User `json:"user"`
+}

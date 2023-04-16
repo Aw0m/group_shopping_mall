@@ -19,7 +19,7 @@ func WXLogin(ctx *gin.Context) {
 	}
 
 	rsp := new(rdm.WXLoginResponse)
-	rsp.User, rsp.Token, err = biz.WXLogin(ctx, req.Code, req.Username, req.AvatarURL, req.Gender)
+	rsp.User, rsp.Token, err = biz.WXLogin(ctx, req.Code, req.Username, req.AvatarURL, req.Gender, req.PhoneNum)
 	utils.HttpResp(ctx, rsp, http.StatusInternalServerError, err)
 
 	return

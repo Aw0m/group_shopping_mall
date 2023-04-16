@@ -15,7 +15,7 @@ import (
 )
 
 // WXLogin 用户登录服务，生成Token。并且在数据库中检索该用户是否已经注册，如果没有则还会在数据库中创建该用户
-func WXLogin(ctx context.Context, code, username, avatarURL string, gender string) (u bdm.User, token string, retErr error) {
+func WXLogin(ctx context.Context, code, username, avatarURL, gender, phoneNum string) (u bdm.User, token string, retErr error) {
 	url := fmt.Sprintf(constant.OpenIDURL, code)
 	// 通过code获取用户的唯一标识符openid
 	res, err := http.Get(url)
@@ -43,16 +43,12 @@ func WXLogin(ctx context.Context, code, username, avatarURL string, gender strin
 
 		// 未注册过，需要先注册
 		user = &bdm.User{
-			OpenId:      openid,
-			Gender:      gender,
-			Username:    username,
-			ClubId:      0,
-			Intro:       "",
-			AdminType:   constant.AdminType_NotAdmin,
-			UserType:    0,
-			Price:       0,
-			Commissions: 0,
-			AvatarURL:   avatarURL,
+			OpenId:    openid,
+			Gender:    gender,
+			Username:  username,
+			AvatarUrl: avatarURL,
+			PhoneNum:  phoneNum,
+			AddressId: 0,
 		}
 		err = dao.SaveUser(ctx, user)
 		if err != nil {

@@ -7,32 +7,24 @@ import (
 
 func UserRdmToBdm(u rdm.User) bdm.User {
 	return bdm.User{
-		UserId:      u.UserId,
-		OpenId:      u.OpenId,
-		Gender:      u.Gender,
-		Username:    u.Username,
-		ClubId:      u.ClubId,
-		Intro:       u.Intro,
-		AdminType:   u.AdminType,
-		UserType:    u.UserType,
-		Price:       u.Price,
-		Commissions: u.Commissions,
-		AvatarURL:   u.AvatarURL,
+		UserId:    u.UserId,
+		OpenId:    u.OpenId,
+		Gender:    u.Gender,
+		Username:  u.Username,
+		AvatarUrl: u.AvatarUrl,
+		PhoneNum:  u.PhoneNum,
+		AddressId: u.AddressId,
 	}
 }
 
 func UserBdmToRdm(u bdm.User) rdm.User {
 	return rdm.User{
-		UserId:      u.UserId,
-		OpenId:      u.OpenId,
-		Gender:      u.Gender,
-		Username:    u.Username,
-		ClubId:      u.ClubId,
-		Intro:       u.Intro,
-		AdminType:   u.AdminType,
-		UserType:    u.UserType,
-		Price:       u.Price,
-		Commissions: u.Commissions,
-		AvatarURL:   u.AvatarURL,
+		UserId:    u.UserId,
+		OpenId:    u.OpenId,
+		Gender:    u.Gender,
+		Username:  u.Username,
+		AvatarUrl: u.AvatarUrl,
+		PhoneNum:  u.PhoneNum,
+		AddressId: u.AddressId,
 	}
 }

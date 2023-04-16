@@ -5,4 +5,8 @@ type WXLoginRequest struct {
 	Username  string `json:"username"`
 	AvatarURL string `json:"avatar_url"`
 	Gender    string `json:"gender"` // m/f/u
+	PhoneNum  string `json:"phone_num"`
+}
+
+type GetUserinfoReq struct {
 }
