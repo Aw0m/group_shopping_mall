@@ -10,3 +10,6 @@ type WXLoginResponse struct {
 type GetUserinfoRsp struct {
 	User bdm.User `json:"user"`
 }
+
+type UpdateUserinfoRsp struct {
+}

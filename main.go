@@ -44,6 +44,7 @@ func main() {
 	userGroup.Use(middleware.Authorize())
 	{
 		userGroup.POST("/get_userinfo", user.GetUserinfo)
+		userGroup.POST("/update_userinfo", user.UpdateUserinfo)
 	}
 	err := r.Run(fmt.Sprintf(":%d", port))
 	if err != nil {
