@@ -7,6 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 
 	"group_shopping_mall/controller/address"
+	"group_shopping_mall/controller/cart"
 	"group_shopping_mall/controller/user"
 	"group_shopping_mall/dal/client_db"
 	"group_shopping_mall/dal/client_redis"
@@ -56,6 +57,13 @@ func main() {
 	{
 		addressGroup.POST("/get_address_list", address.GetAddressList)
 		addressGroup.POST("/add_shopping_address", address.AddShoppingAddress)
+	}
+
+	// 购物车
+	cartGroup := r.Group("/cart")
+	cartGroup.Use(middleware.Authorize())
+	{
+		cartGroup.POST("/get_cart_list", cart.GetCartList)
 	}
 
 	err := r.Run(fmt.Sprintf(":%d", port))

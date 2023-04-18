@@ -26,3 +26,6 @@ type AddShoppingAddressReq struct {
 	AddressName string `json:"address_name"`
 	DetailInfo  string `json:"detail_info"`
 }
+
+type GetCartListReq struct {
+}

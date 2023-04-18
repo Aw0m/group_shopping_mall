@@ -20,3 +20,7 @@ type GetAddressListRsp struct {
 
 type AddShoppingAddressRsp struct {
 }
+
+type GetCartListRsp struct {
+	CartList []bdm.Cart `json:"cart_list"`
+}
