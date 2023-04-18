@@ -13,8 +13,16 @@ type GetUserinfoReq struct {
 
 type UpdateUserinfoReq struct {
 	Username  string `json:"username" validate:"max=16"`
-	Gender    string `json:"gender" validate:"oneof=m f u"`
+	Gender    string `json:"gender"`
 	AvatarURL string `json:"avatar_url"`
 	PhoneNum  string `json:"phone_num"`
 	AddressId int    `json:"address_id,string"`
+}
+
+type GetAddressListReq struct {
+}
+
+type AddShoppingAddressReq struct {
+	AddressName string `json:"address_name"`
+	DetailInfo  string `json:"detail_info"`
 }

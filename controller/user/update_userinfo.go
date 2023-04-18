@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"github.com/pkg/errors"
 
 	"group_shopping_mall/biz"
 	"group_shopping_mall/model/rdm"
@@ -28,6 +29,10 @@ func checkUpdateUserinfoReq(ctx *gin.Context) (req *rdm.UpdateUserinfoReq, retEr
 	err := utils.ReqBindAndCheck(ctx, req)
 	if err != nil {
 		return req, err
+	}
+
+	if req.Gender != "u" && req.Gender != "m" && req.Gender != "f" && req.Gender != "" {
+		return nil, errors.New("gender is invalid")
 	}
 
 	return req, nil

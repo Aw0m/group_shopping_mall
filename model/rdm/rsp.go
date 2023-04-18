@@ -13,3 +13,10 @@ type GetUserinfoRsp struct {
 
 type UpdateUserinfoRsp struct {
 }
+
+type GetAddressListRsp struct {
+	AddressList []bdm.ShoppingAddress `json:"address_list"`
+}
+
+type AddShoppingAddressRsp struct {
+}
