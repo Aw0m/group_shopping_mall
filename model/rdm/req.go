@@ -16,7 +16,7 @@ type UpdateUserinfoReq struct {
 	Gender    string `json:"gender"`
 	AvatarURL string `json:"avatar_url"`
 	PhoneNum  string `json:"phone_num"`
-	AddressId int    `json:"address_id,string"`
+	AddressId int64  `json:"address_id,string"`
 }
 
 type GetAddressListReq struct {
