@@ -21,6 +21,17 @@ type GetAddressListRsp struct {
 type AddShoppingAddressRsp struct {
 }
 
-type GetCartListRsp struct {
-	CartList []bdm.Cart `json:"cart_list"`
-}
+type (
+	CartCommodityItem struct {
+		Commodity bdm.Commodity `json:"commodity"`
+		Cart      bdm.Cart      `json:"cart"`
+	}
+	CartInfoItem struct {
+		SellerID      int64               `json:"seller_id,string"`
+		SellerName    string              `json:"seller_name"`
+		CommodityList []CartCommodityItem `json:"commodity_list"`
+	}
+	GetCartListRsp struct {
+		CommodityItemList []CartInfoItem `json:"commodity_item_list"`
+	}
+)

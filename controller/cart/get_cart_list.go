@@ -18,7 +18,7 @@ func GetCartList(ctx *gin.Context) {
 	}
 
 	rsp := new(rdm.GetCartListRsp)
-	rsp.CartList, err = biz.GetCartList(ctx)
+	rsp.CommodityItemList, err = biz.GetCartList(ctx)
 	utils.HttpResp(ctx, rsp, http.StatusInternalServerError, err)
 	return
 }

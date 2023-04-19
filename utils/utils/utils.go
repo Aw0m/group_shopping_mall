@@ -31,6 +31,7 @@ func HttpResp(ctx *gin.Context, rsp any, httpErrCode int, err error) {
 		})
 		return
 	}
+	fmt.Println(err)
 	ctx.JSON(httpErrCode, gin.H{
 		"message": err.Error(),
 		"rsp":     nil,
