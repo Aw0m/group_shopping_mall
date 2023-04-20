@@ -1,6 +1,8 @@
 package rdm
 
-import "gorm.io/datatypes"
+import (
+	"gorm.io/datatypes"
+)
 
 // Commodity 商品信息表
 type Commodity struct {
@@ -12,6 +14,7 @@ type Commodity struct {
 	Content         datatypes.JSON `gorm:"column:content;type:json;comment:商品的详细内容" json:"content"`
 	AddressList     string         `gorm:"column:address_list;type:varchar(255);comment:支持配送地址" json:"address_list"`
 	CommodityStatus int            `gorm:"column:commodity_status;type:int(11);default:1;comment:商品状态" json:"commodity_status"`
+	ImageURL        string         `gorm:"column:image_url;type:varchar(255);comment:商品展示图片" json:"image_url"`
 	IsDeleted       bool           `gorm:"column:is_deleted;type:tinyint(1);default:0;comment:是否删除" json:"is_deleted"`
 }
 

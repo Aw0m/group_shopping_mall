@@ -15,6 +15,7 @@ func CommodityBdmToRdm(c bdm.Commodity) rdm.Commodity {
 		Content:         c.Content,
 		AddressList:     c.AddressList,
 		CommodityStatus: c.CommodityStatus,
+		ImageURL:        c.ImageURL,
 		IsDeleted:       c.IsDeleted,
 	}
 }
@@ -29,6 +30,7 @@ func CommodityRdmToBdm(c rdm.Commodity) bdm.Commodity {
 		Content:         c.Content,
 		AddressList:     c.AddressList,
 		CommodityStatus: c.CommodityStatus,
+		ImageURL:        c.ImageURL,
 		IsDeleted:       c.IsDeleted,
 	}
 }
