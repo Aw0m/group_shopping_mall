@@ -16,7 +16,7 @@ type Commodity struct {
 	Content         datatypes.JSON `json:"content"`
 	AddressList     string         `json:"address_list"`
 	CommodityStatus int            `json:"commodity_status,string"`
-	ImageURL        string         `gorm:"column:image_url;type:varchar(255);comment:商品展示图片" json:"image_url"`
+	ImageURL        string         `json:"image_url"`
 	IsDeleted       bool           `json:"is_deleted"`
 }
 

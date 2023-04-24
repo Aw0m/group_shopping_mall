@@ -4,6 +4,8 @@ import (
 	"flag"
 	"fmt"
 
+	"group_shopping_mall/controller/commodity"
+
 	"github.com/gin-gonic/gin"
 
 	"group_shopping_mall/controller/address"
@@ -66,6 +68,12 @@ func main() {
 		cartGroup.POST("/get_cart_list", cart.GetCartList)
 	}
 
+	// 商品
+	commodityGroup := r.Group("/commodity")
+	commodityGroup.Use(middleware.Authorize())
+	{
+		commodityGroup.POST("/get_commodity_detail", commodity.GetCommodityDetail) // 获取一个商品的信息信息
+	}
 	err := r.Run(fmt.Sprintf(":%d", port))
 	if err != nil {
 		panic(err)

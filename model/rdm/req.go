@@ -29,3 +29,11 @@ type AddShoppingAddressReq struct {
 
 type GetCartListReq struct {
 }
+
+// commodity
+type (
+	// GetCommodityDetailReq 获取商品详情
+	GetCommodityDetailReq struct {
+		CommodityId int64 `json:"commodity_id,string" validate:"required,gte=1"`
+	}
+)

@@ -35,3 +35,27 @@ type (
 		CommodityItemList []CartInfoItem `json:"commodity_item_list"`
 	}
 )
+
+type (
+	CommodityInfo struct {
+		CommodityId   int64   `json:"commodity_id,string"`
+		CommodityName string  `json:"commodity_name"`
+		Price         float64 `json:"price"`
+	}
+	SellerInfo struct {
+		SellerId   int64  `json:"seller_id,string"`
+		SellerName string `json:"seller_name"`
+	}
+	CommentInfo struct {
+		CommentId          int64  `json:"comment_id,string"`    // 评论id
+		CommenterName      string `json:"commenter_name"`       // 评论者名字
+		CommenterAvatarURL string `json:"commenter_avatar_url"` // 评论者头像
+		CommentText        string `json:"comment_text"`         // 评论内容
+		ScoreRes           int    `json:"score_res"`            // 1-5星打分
+	}
+	GetCommodityDetailRsp struct {
+		CommodityInfo CommodityInfo `json:"commodity_info"`
+		SellerInfo    SellerInfo    `json:"seller_info"`
+		CommentInfo   CommentInfo   `json:"comment_info"`
+	}
+)
