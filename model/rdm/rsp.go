@@ -63,3 +63,6 @@ type (
 
 type AddToCartRsp struct {
 }
+
+type UpdateCartNumRsp struct {
+}

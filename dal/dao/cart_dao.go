@@ -33,6 +33,28 @@ func GetCartListByUserId(_ context.Context, db *gorm.DB, userId int64, withDelet
 	return cartBdmList, nil
 }
 
+// BatchGetCartById 根据cartId批量拉取cart
+func BatchGetCartById(_ context.Context, db *gorm.DB, cartIdList []int64, withDelete bool) ([]bdm.Cart, error) {
+	cartRdmList := make([]rdm.Cart, 0)
+	txTemp := db.Where("cart_id IN ?", cartIdList)
+	if !withDelete {
+		txTemp = txTemp.Where("is_deleted = ?", false)
+	}
+	res := txTemp.Order("-create_time").Find(&cartRdmList)
+	if res.Error != nil {
+		if errors.Is(res.Error, gorm.ErrRecordNotFound) {
+			return nil, nil
+		}
+		return nil, errors.Errorf("query from table cart err! err:%s", res.Error.Error())
+	}
+
+	cartBdmList := make([]bdm.Cart, 0, len(cartRdmList))
+	for _, cartRdm := range cartRdmList {
+		cartBdmList = append(cartBdmList, convertor.CartRdmToBdm(cartRdm))
+	}
+	return cartBdmList, nil
+}
+
 // UpdateCart 更新Cart
 func UpdateCart(_ context.Context, db *gorm.DB, cartId int64, updateMap map[string]any) error {
 	res := db.Model(&rdm.Cart{}).Where("cart_id = ?", cartId).Updates(updateMap)

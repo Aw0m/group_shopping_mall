@@ -27,8 +27,17 @@ type AddShoppingAddressReq struct {
 	DetailInfo  string `json:"detail_info"`
 }
 
-type GetCartListReq struct {
-}
+// cart
+type (
+	// GetCartListReq 获取购物车列表
+	GetCartListReq struct {
+	}
+
+	UpdateCartNumReq struct {
+		CartId   int64 `json:"cart_id,string" validate:"required,gte=1"`
+		Quantity int   `json:"quantity" validate:"required,gte=1"`
+	}
+)
 
 // commodity
 type (

@@ -66,6 +66,7 @@ func main() {
 	cartGroup.Use(middleware.Authorize())
 	{
 		cartGroup.POST("/get_cart_list", cart.GetCartList)
+		cartGroup.POST("/update_cart_num", cart.UpdateCartNum)
 	}
 
 	// 商品
