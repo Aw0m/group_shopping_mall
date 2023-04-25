@@ -60,3 +60,6 @@ type (
 		CommentInfo   CommentInfo   `json:"comment_info"`
 	}
 )
+
+type AddToCartRsp struct {
+}

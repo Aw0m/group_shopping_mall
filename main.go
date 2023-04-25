@@ -73,6 +73,7 @@ func main() {
 	commodityGroup.Use(middleware.Authorize())
 	{
 		commodityGroup.POST("/get_commodity_detail", commodity.GetCommodityDetail) // 获取一个商品的信息信息
+		commodityGroup.POST("/add_to_cart", commodity.AddToCart)                   // 添加到购物车
 	}
 	err := r.Run(fmt.Sprintf(":%d", port))
 	if err != nil {

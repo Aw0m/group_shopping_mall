@@ -32,3 +32,22 @@ func GetCartListByUserId(_ context.Context, db *gorm.DB, userId int64, withDelet
 	}
 	return cartBdmList, nil
 }
+
+// UpdateCart 更新Cart
+func UpdateCart(_ context.Context, db *gorm.DB, cartId int64, updateMap map[string]any) error {
+	res := db.Model(&rdm.Cart{}).Where("cart_id = ?", cartId).Updates(updateMap)
+	if res.Error != nil {
+		return errors.Errorf("update cart fail! err:%s", res.Error.Error())
+	}
+	return nil
+}
+
+// CreateCart 创建Cart
+func CreateCart(_ context.Context, db *gorm.DB, cart bdm.Cart) error {
+	cartRdm := convertor.CartBdmToRdm(cart)
+	res := db.Create(&cartRdm)
+	if res.Error != nil {
+		return errors.Errorf("create cart fail! err:%s", res.Error.Error())
+	}
+	return nil
+}

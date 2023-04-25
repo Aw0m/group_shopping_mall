@@ -36,4 +36,9 @@ type (
 	GetCommodityDetailReq struct {
 		CommodityId int64 `json:"commodity_id,string" validate:"required,gte=1"`
 	}
+
+	AddToCartReq struct {
+		CommodityId  int64 `json:"commodity_id,string" validate:"required,gte=1"`
+		CommodityNum int   `json:"commodity_num" validate:"required,gte=1"`
+	}
 )
