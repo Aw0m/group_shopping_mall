@@ -41,6 +41,7 @@ type (
 		CommodityId   int64   `json:"commodity_id,string"`
 		CommodityName string  `json:"commodity_name"`
 		Price         float64 `json:"price"`
+		ImageURL      string  `json:"image_url"`
 	}
 	SellerInfo struct {
 		SellerId   int64  `json:"seller_id,string"`

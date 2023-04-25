@@ -29,6 +29,7 @@ func GetCommodityDetail(ctx *gin.Context, commodityId int64) (commodityInfo rdm.
 		CommodityId:   commodityId,
 		CommodityName: commodity.CommodityName,
 		Price:         commodity.Price,
+		ImageURL:      commodity.ImageURL,
 	}
 
 	// 2. 拉取commodity的seller
@@ -51,7 +52,7 @@ func GetCommodityDetail(ctx *gin.Context, commodityId int64) (commodityInfo rdm.
 	commentInfo = rdm.CommentInfo{
 		CommentId:          0,
 		CommenterName:      "小星星",
-		CommenterAvatarURL: "",
+		CommenterAvatarURL: "https://mall-1301454934.cos.ap-shanghai.myqcloud.com/xt%2Cjpg.jpg",
 		CommentText:        "太好吃了！",
 		ScoreRes:           5,
 	}
