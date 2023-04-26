@@ -52,9 +52,9 @@ type (
 	}
 
 	GetCommodityFromCategoryReq struct {
-		CategoryId int64 `json:"category_id,string" validate:"required,gte=1"`
-		PageSize   int   `json:"page_size" validate:"required,gte=1"`
-		PageNum    int   `json:"page_num" validate:"required,gte=1"`
+		CategoryId int64 `json:"category_id,string"`
+		PageSize   int   `json:"page_size"`
+		PageNum    int   `json:"page_num"`
 	}
 )
 

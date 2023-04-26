@@ -38,7 +38,12 @@ func GetCommodityFromCategory(ctx context.Context, db *gorm.DB, categoryId int64
 		db = db.Where("is_deleted = ?", false)
 	}
 
-	res := db.WithContext(ctx).Where("category_id = ?", categoryId).
+	// categoryId == 0 means get all commodities
+	if categoryId > 0 {
+		db = db.Where("category_id = ?", categoryId)
+	}
+
+	res := db.WithContext(ctx).
 		Order("commodity_id DESC").
 		Limit(limit).
 		Offset(offset).

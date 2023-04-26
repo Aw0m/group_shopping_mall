@@ -9,6 +9,10 @@ import (
 )
 
 func GetCommodityFromCategory(ctx *gin.Context, categoryId int64, pageNum, pageSize int) (commodityList []bdm.Commodity, retErr error) {
+	if pageNum <= 0 || pageSize <= 0 {
+		return nil, nil
+	}
+
 	offset := pageSize * (pageNum - 1)
 	limit := pageSize
 	commodityList, retErr = dao.GetCommodityFromCategory(ctx, client_db.GetDB(), categoryId, limit, offset, false)

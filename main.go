@@ -79,7 +79,6 @@ func main() {
 
 	// 分类
 	categoryGroup := r.Group("/category")
-	categoryGroup.Use(middleware.Authorize())
 	{
 		categoryGroup.POST("/get_category_list", category.GetCategoryList) // 获取分类列表
 	}
