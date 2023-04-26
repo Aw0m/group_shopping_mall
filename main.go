@@ -71,10 +71,10 @@ func main() {
 
 	// 商品
 	commodityGroup := r.Group("/commodity")
-	commodityGroup.Use(middleware.Authorize())
 	{
-		commodityGroup.POST("/get_commodity_detail", commodity.GetCommodityDetail) // 获取一个商品的信息信息
-		commodityGroup.POST("/add_to_cart", commodity.AddToCart)                   // 添加到购物车
+		commodityGroup.POST("/get_commodity_detail", commodity.GetCommodityDetail)              // 获取一个商品的信息信息
+		commodityGroup.POST("/add_to_cart", middleware.Authorize(), commodity.AddToCart)        // 添加到购物车
+		commodityGroup.POST("/get_commodity_from_category", commodity.GetCommodityFromCategory) // 获取商品列表
 	}
 
 	// 分类

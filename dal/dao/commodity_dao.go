@@ -31,3 +31,28 @@ func BatchGetCommodityByIdList(ctx context.Context, db *gorm.DB, idList []int64)
 	}
 	return retCommodityList, nil
 }
+
+func GetCommodityFromCategory(ctx context.Context, db *gorm.DB, categoryId int64, limit, offset int, withDeleted bool) (categoryList []bdm.Commodity, retErr error) {
+	var rdmCategoryList []rdm.Commodity
+	if !withDeleted {
+		db = db.Where("is_deleted = ?", false)
+	}
+
+	res := db.WithContext(ctx).Where("category_id = ?", categoryId).
+		Order("commodity_id DESC").
+		Limit(limit).
+		Offset(offset).
+		Find(&rdmCategoryList)
+	if res.Error != nil {
+		if errors.Is(res.Error, gorm.ErrRecordNotFound) {
+			return nil, nil
+		}
+		return nil, errors.Errorf("query from table category err! err:%s", res.Error.Error())
+	}
+
+	categoryList = make([]bdm.Commodity, 0, len(rdmCategoryList))
+	for _, c := range rdmCategoryList {
+		categoryList = append(categoryList, convertor.CommodityRdmToBdm(c))
+	}
+	return categoryList, nil
+}

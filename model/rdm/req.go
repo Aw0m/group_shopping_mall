@@ -50,6 +50,12 @@ type (
 		CommodityId  int64 `json:"commodity_id,string" validate:"required,gte=1"`
 		CommodityNum int   `json:"commodity_num" validate:"required,gte=1"`
 	}
+
+	GetCommodityFromCategoryReq struct {
+		CategoryId int64 `json:"category_id,string" validate:"required,gte=1"`
+		PageSize   int   `json:"page_size" validate:"required,gte=1"`
+		PageNum    int   `json:"page_num" validate:"required,gte=1"`
+	}
 )
 
 // category
