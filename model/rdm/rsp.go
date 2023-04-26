@@ -66,3 +66,7 @@ type AddToCartRsp struct {
 
 type UpdateCartNumRsp struct {
 }
+
+type GetCategoryListRsp struct {
+	CategoryList []bdm.Category `json:"category_list"`
+}

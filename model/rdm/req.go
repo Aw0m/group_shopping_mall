@@ -51,3 +51,10 @@ type (
 		CommodityNum int   `json:"commodity_num" validate:"required,gte=1"`
 	}
 )
+
+// category
+type (
+	// GetCategoryListReq 获取分类列表
+	GetCategoryListReq struct {
+	}
+)

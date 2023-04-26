@@ -4,12 +4,12 @@ import (
 	"flag"
 	"fmt"
 
-	"group_shopping_mall/controller/commodity"
-
 	"github.com/gin-gonic/gin"
 
 	"group_shopping_mall/controller/address"
 	"group_shopping_mall/controller/cart"
+	"group_shopping_mall/controller/category"
+	"group_shopping_mall/controller/commodity"
 	"group_shopping_mall/controller/user"
 	"group_shopping_mall/dal/client_db"
 	"group_shopping_mall/dal/client_redis"
@@ -75,6 +75,13 @@ func main() {
 	{
 		commodityGroup.POST("/get_commodity_detail", commodity.GetCommodityDetail) // 获取一个商品的信息信息
 		commodityGroup.POST("/add_to_cart", commodity.AddToCart)                   // 添加到购物车
+	}
+
+	// 分类
+	categoryGroup := r.Group("/category")
+	categoryGroup.Use(middleware.Authorize())
+	{
+		categoryGroup.POST("/get_category_list", category.GetCategoryList) // 获取分类列表
 	}
 	err := r.Run(fmt.Sprintf(":%d", port))
 	if err != nil {
