@@ -67,6 +67,7 @@ func main() {
 	{
 		cartGroup.POST("/get_cart_list", cart.GetCartList)
 		cartGroup.POST("/update_cart_num", cart.UpdateCartNum)
+		cartGroup.POST("/delete_cart", cart.DeleteCart)
 	}
 
 	// 商品

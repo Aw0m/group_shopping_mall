@@ -37,6 +37,10 @@ type (
 		CartId   int64 `json:"cart_id,string" validate:"required,gte=1"`
 		Quantity int   `json:"quantity" validate:"required,gte=1"`
 	}
+
+	DeleteCartReq struct {
+		CartId int64 `json:"cart_id,string" validate:"required,gte=1"`
+	}
 )
 
 // commodity

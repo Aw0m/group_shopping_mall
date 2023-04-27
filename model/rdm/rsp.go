@@ -74,3 +74,6 @@ type GetCategoryListRsp struct {
 type GetCommodityFromCategoryRsp struct {
 	CommodityList []bdm.Commodity `json:"commodity_list"`
 }
+
+type DeleteCartRsp struct {
+}
