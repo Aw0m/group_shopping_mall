@@ -58,3 +58,24 @@ func UpdateOrder(_ context.Context, db *gorm.DB, orderId int64, updateMap map[st
 	}
 	return nil
 }
+
+// GetOrdersByCustomerId 根据用户id查询订单
+func GetOrdersByCustomerId(_ context.Context, db *gorm.DB, customerId int64, statusList []int) ([]bdm.Order, error) {
+	var orderList []rdm.Order
+	res := db.Where("customer_id = ?", customerId).
+		Where("status in ?", statusList).
+		Order("-create_time").
+		Find(&orderList)
+	if res.Error != nil {
+		if errors.Is(res.Error, gorm.ErrRecordNotFound) {
+			return nil, nil
+		}
+		return nil, errors.Errorf("find order by order_id fail! err:%s", res.Error.Error())
+	}
+
+	var bdmOrderList []bdm.Order
+	for _, order := range orderList {
+		bdmOrderList = append(bdmOrderList, convertor.OrderRdmToBdm(order))
+	}
+	return bdmOrderList, nil
+}

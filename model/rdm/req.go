@@ -94,4 +94,8 @@ type (
 	OrderReceiptReq struct {
 		OrderId int64 `json:"order_id,string" validate:"required,gte=1"`
 	}
+
+	// GetOrderStatisticsReq 获取用户各种status订单的数量
+	GetOrderStatisticsReq struct {
+	}
 )

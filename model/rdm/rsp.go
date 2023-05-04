@@ -90,3 +90,10 @@ type ShipOrderRsp struct {
 
 type OrderReceiptRsp struct {
 }
+
+type GetOrderStatisticsRsp struct {
+	PendingNum   int `json:"pending_num"`
+	UnshippedNum int `json:"unshipped_num"`
+	ShippedNum   int `json:"shipped_num"`
+	CompletedNum int `json:"completed_num"`
+}
