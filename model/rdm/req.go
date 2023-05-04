@@ -98,4 +98,9 @@ type (
 	// GetOrderStatisticsReq 获取用户各种status订单的数量
 	GetOrderStatisticsReq struct {
 	}
+
+	// GetOrderListReq 获取订单列表
+	GetOrderListReq struct {
+		StatusList []int `json:"status_list" validate:"required,gte=1"`
+	}
 )
