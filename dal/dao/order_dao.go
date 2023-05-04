@@ -50,3 +50,11 @@ func UpdateOrderStatus(_ context.Context, db *gorm.DB, orderId int64, status int
 	}
 	return nil
 }
+
+func UpdateOrder(_ context.Context, db *gorm.DB, orderId int64, updateMap map[string]any) error {
+	res := db.Model(&rdm.Order{}).Where("order_id = ?", orderId).Updates(updateMap)
+	if res.Error != nil {
+		return errors.Errorf("update order fail! err:%s", res.Error.Error())
+	}
+	return nil
+}

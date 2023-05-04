@@ -84,3 +84,6 @@ type CreateOrderRsp struct {
 
 type ConfirmOrderRsp struct {
 }
+
+type ShipOrderRsp struct {
+}

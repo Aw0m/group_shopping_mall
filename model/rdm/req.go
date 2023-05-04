@@ -83,4 +83,10 @@ type (
 	ConfirmOrderReq struct {
 		OrderId int64 `json:"order_id,string" validate:"required,gte=1"`
 	}
+
+	ShipOrderReq struct {
+		OrderId             int64  `json:"order_id,string" validate:"required,gte=1"`
+		DeliverymanName     string `json:"deliveryman_name" validate:"required,max=16"`
+		DeliverymanPhoneNum string `json:"deliveryman_phone_num" validate:"required,max=16"`
+	}
 )
