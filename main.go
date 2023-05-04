@@ -10,6 +10,7 @@ import (
 	"group_shopping_mall/controller/cart"
 	"group_shopping_mall/controller/category"
 	"group_shopping_mall/controller/commodity"
+	"group_shopping_mall/controller/order"
 	"group_shopping_mall/controller/user"
 	"group_shopping_mall/dal/client_db"
 	"group_shopping_mall/dal/client_redis"
@@ -82,6 +83,12 @@ func main() {
 	categoryGroup := r.Group("/category")
 	{
 		categoryGroup.POST("/get_category_list", category.GetCategoryList) // 获取分类列表
+	}
+
+	// 订单
+	orderGroup := r.Group("/order")
+	{
+		orderGroup.POST("/create_order", middleware.Authorize(), order.CreateOrder) // 创建订单
 	}
 	err := r.Run(fmt.Sprintf(":%d", port))
 	if err != nil {

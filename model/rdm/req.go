@@ -68,3 +68,15 @@ type (
 	GetCategoryListReq struct {
 	}
 )
+
+// order
+type (
+	OrderCommodityInfo struct {
+		CommodityId int64 `json:"commodity_id,string" validate:"required,gte=1"`
+		Quantity    int   `json:"quantity" validate:"required,gte=1"`
+	}
+	// CreateOrderReq 创建订单
+	CreateOrderReq struct {
+		OrderCommodityInfoList []OrderCommodityInfo `json:"order_commodity_info_list" validate:"required,gte=1"` // 商品列表
+	}
+)

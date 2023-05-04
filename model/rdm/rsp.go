@@ -77,3 +77,7 @@ type GetCommodityFromCategoryRsp struct {
 
 type DeleteCartRsp struct {
 }
+
+type CreateOrderRsp struct {
+	OrderList []bdm.Order `json:"orders_list"`
+}
