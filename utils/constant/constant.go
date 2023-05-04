@@ -29,5 +29,6 @@ const (
 )
 
 const (
-	OrderStatus_Unconfirmed = 1
+	OrderStatus_Pending   = 1 // 待确认（未付款）
+	OrderStatus_Unshipped = 2 // 待发货（已付款）
 )

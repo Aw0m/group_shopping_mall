@@ -89,6 +89,7 @@ func main() {
 	orderGroup := r.Group("/order")
 	{
 		orderGroup.POST("/create_order", middleware.Authorize(), order.CreateOrder) // 创建订单
+		orderGroup.POST("/confirm_order", middleware.Authorize(), order.ConfirmOrder)
 	}
 	err := r.Run(fmt.Sprintf(":%d", port))
 	if err != nil {

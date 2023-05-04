@@ -120,6 +120,6 @@ func packOrder(user *bdm.User, seller *bdm.Seller, address *bdm.ShoppingAddress,
 		AddressDetailInfo:   address.DetailInfo,
 		Price:               commodity.Price,
 		Quantity:            quantity,
-		Status:              constant.OrderStatus_Unconfirmed,
+		Status:              constant.OrderStatus_Pending,
 	}
 }

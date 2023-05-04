@@ -79,4 +79,8 @@ type (
 	CreateOrderReq struct {
 		OrderCommodityInfoList []OrderCommodityInfo `json:"order_commodity_info_list" validate:"required,gte=1"` // 商品列表
 	}
+
+	ConfirmOrderReq struct {
+		OrderId int64 `json:"order_id,string" validate:"required,gte=1"`
+	}
 )
