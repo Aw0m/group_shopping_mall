@@ -89,4 +89,9 @@ type (
 		DeliverymanName     string `json:"deliveryman_name" validate:"required,max=16"`
 		DeliverymanPhoneNum string `json:"deliveryman_phone_num" validate:"required,max=16"`
 	}
+
+	// OrderReceiptReq 订单确认收获
+	OrderReceiptReq struct {
+		OrderId int64 `json:"order_id,string" validate:"required,gte=1"`
+	}
 )

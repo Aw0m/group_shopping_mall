@@ -32,4 +32,5 @@ const (
 	OrderStatus_Pending   = 1 // 待确认（未付款）
 	OrderStatus_Unshipped = 2 // 待发货（已付款）
 	OrderStatus_Shipped   = 3 // 已发货
+	OrderStatus_Completed = 4 // 已完成
 )

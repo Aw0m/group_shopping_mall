@@ -91,6 +91,7 @@ func main() {
 		orderGroup.POST("/create_order", middleware.Authorize(), order.CreateOrder) // 创建订单
 		orderGroup.POST("/confirm_order", middleware.Authorize(), order.ConfirmOrder)
 		orderGroup.POST("/ship_order", middleware.Authorize(), order.ShipOrder)
+		orderGroup.POST("/order_receipt", middleware.Authorize(), order.OrderReceipt) // 订单确认收货
 	}
 	err := r.Run(fmt.Sprintf(":%d", port))
 	if err != nil {
