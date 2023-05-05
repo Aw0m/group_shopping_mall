@@ -18,7 +18,7 @@ func GetOrderList(ctx *gin.Context) {
 	}
 
 	rsp := new(rdm.GetOrderListRsp)
-	rsp.OrderList, err = biz.GetOrderList(ctx, req.StatusList)
+	rsp.OrderList, err = biz.GetOrderList(ctx, req.StatusList, req.PageSize, req.PageNum)
 	utils.HttpResp(ctx, rsp, http.StatusInternalServerError, err)
 	return
 }

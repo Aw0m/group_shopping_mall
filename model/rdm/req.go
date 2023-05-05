@@ -101,6 +101,8 @@ type (
 
 	// GetOrderListReq 获取订单列表
 	GetOrderListReq struct {
+		PageSize   int   `json:"page_size"`
+		PageNum    int   `json:"page_num"`
 		StatusList []int `json:"status_list" validate:"required,gte=1"`
 	}
 )

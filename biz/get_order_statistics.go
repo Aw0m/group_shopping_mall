@@ -18,7 +18,13 @@ func GetOrderStatistics(ctx *gin.Context) (pendingNum, unshippedNum, shippedNum,
 	}
 
 	// 1. 根据用户id获取订单信息
-	orderList, err := dao.GetOrdersByCustomerId(ctx, client_db.GetDB(), userId, []int{constant.OrderStatus_Pending, constant.OrderStatus_Shipped, constant.OrderStatus_Unshipped, constant.OrderStatus_Completed})
+	orderList, err := dao.GetOrdersByCustomerId(
+		ctx,
+		client_db.GetDB(),
+		userId,
+		[]int{constant.OrderStatus_Pending, constant.OrderStatus_Shipped, constant.OrderStatus_Unshipped, constant.OrderStatus_Completed},
+		false,
+	)
 	if err != nil {
 		retErr = errors.WithMessage(err, "GetOrdersByCustomerId from db err!")
 		return
