@@ -105,4 +105,9 @@ type (
 		PageNum    int   `json:"page_num"`
 		StatusList []int `json:"status_list" validate:"required,gte=1"`
 	}
+
+	// GetOrderDetailReq 获取订单详情
+	GetOrderDetailReq struct {
+		OrderId int64 `json:"order_id,string" validate:"required,gte=1"`
+	}
 )

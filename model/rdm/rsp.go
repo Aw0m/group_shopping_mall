@@ -101,3 +101,7 @@ type GetOrderStatisticsRsp struct {
 type GetOrderListRsp struct {
 	OrderList []bdm.Order `json:"order_list"`
 }
+
+type GetOrderDetailRsp struct {
+	Order bdm.Order `json:"order"`
+}

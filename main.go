@@ -94,6 +94,7 @@ func main() {
 		orderGroup.POST("/order_receipt", middleware.Authorize(), order.OrderReceipt)              // 订单确认收货
 		orderGroup.POST("/get_order_statistics", middleware.Authorize(), order.GetOrderStatistics) // 获取用户各个status的订单的统计信息
 		orderGroup.POST("/get_order_list", middleware.Authorize(), order.GetOrderList)             // 获取用户订单列表
+		orderGroup.POST("/get_order_detail", middleware.Authorize(), order.GetOrderDetail)         // 获取订单详情
 	}
 	err := r.Run(fmt.Sprintf(":%d", port))
 	if err != nil {
