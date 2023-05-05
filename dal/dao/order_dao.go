@@ -89,7 +89,7 @@ func GetOrdersWithOffset(_ context.Context, db *gorm.DB, customerId int64, statu
 	res := db.Where("customer_id = ?", customerId).
 		Where("status in ?", statusList).
 		Where("is_deleted = ?", false).
-		Order("-create_time").
+		Order("-update_time").
 		Limit(limit).
 		Offset(offset).
 		Find(&orderList)
