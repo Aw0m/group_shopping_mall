@@ -105,3 +105,6 @@ type GetOrderListRsp struct {
 type GetOrderDetailRsp struct {
 	Order bdm.Order `json:"order"`
 }
+
+type CancelOrderRsp struct {
+}

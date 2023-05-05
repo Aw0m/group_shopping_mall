@@ -110,4 +110,9 @@ type (
 	GetOrderDetailReq struct {
 		OrderId int64 `json:"order_id,string" validate:"required,gte=1"`
 	}
+
+	// CancelOrderReq 取消订单
+	CancelOrderReq struct {
+		OrderId int64 `json:"order_id,string" validate:"required,gte=1"`
+	}
 )
