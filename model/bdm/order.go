@@ -8,6 +8,7 @@ type Order struct {
 	SellerName          string    `json:"seller_name"`
 	CommodityId         int64     `json:"commodity_id,string"`
 	CommodityName       string    `json:"commodity_name"`
+	CommodityImageURL   string    `json:"commodity_image_url"`
 	CustomerId          int64     `json:"customer_id,string"`
 	DeliverymanName     string    `json:"deliveryman_name"`
 	DeliverymanPhoneNum string    `json:"deliveryman_phone_num"`

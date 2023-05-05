@@ -11,6 +11,7 @@ type Order struct {
 	SellerName          string    `gorm:"column:seller_name;type:varchar(16);NOT NULL" json:"seller_name"`
 	CommodityId         int64     `gorm:"column:commodity_id;type:bigint(20);NOT NULL" json:"commodity_id,string"`
 	CommodityName       string    `gorm:"column:commodity_name;type:varchar(16);NOT NULL" json:"commodity_name"`
+	CommodityImageURL   string    `gorm:"column:commodity_image_url;type:varchar(255);comment:商品详细页面图" json:"commodity_image_url"`
 	CustomerId          int64     `gorm:"column:customer_id;type:bigint(20);NOT NULL" json:"customer_id,string"`
 	DeliverymanName     string    `gorm:"column:deliveryman_name;type:varchar(16)" json:"deliveryman_name"`
 	DeliverymanPhoneNum string    `gorm:"column:deliveryman_phone_num;type:varchar(16);comment:送货人的电话号码" json:"deliveryman_phone_num"`
