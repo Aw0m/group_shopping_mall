@@ -106,3 +106,38 @@ func GetOrdersWithOffset(_ context.Context, db *gorm.DB, customerId int64, statu
 	}
 	return bdmOrderList, nil
 }
+
+// GetAllOrdersWithOffset 查询所有订单，并分页
+func GetAllOrdersWithOffset(_ context.Context, db *gorm.DB, statusList []int, limit, offset int) ([]bdm.Order, error) {
+	var orderList []rdm.Order
+	res := db.Where("status in ?", statusList).
+		Where("is_deleted = ?", false).
+		Order("-update_time").
+		Limit(limit).
+		Offset(offset).
+		Find(&orderList)
+	if res.Error != nil {
+		if errors.Is(res.Error, gorm.ErrRecordNotFound) {
+			return nil, nil
+		}
+		return nil, errors.Errorf("find order by order_id fail! err:%s", res.Error.Error())
+	}
+
+	var bdmOrderList []bdm.Order
+	for _, order := range orderList {
+		bdmOrderList = append(bdmOrderList, convertor.OrderRdmToBdm(order))
+	}
+	return bdmOrderList, nil
+}
+
+// GetOrderCount 获取订单总数
+func GetOrderCount(_ context.Context, db *gorm.DB, statusList []int) (count int64, retErr error) {
+	res := db.Model(&rdm.Order{}).
+		Where("status in ?", statusList).
+		Where("is_deleted = ?", false).
+		Count(&count)
+	if res.Error != nil {
+		return 0, errors.Errorf("get order count fail! err:%s", res.Error.Error())
+	}
+	return count, nil
+}

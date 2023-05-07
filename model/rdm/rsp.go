@@ -114,3 +114,11 @@ type AddCategoryRsp struct {
 
 type DeleteCategoryRsp struct {
 }
+
+type GetAllOrderRsp struct {
+	OrderList []bdm.Order `json:"order_list"`
+}
+
+type GetOrderCountRsp struct {
+	OrderCount int64 `json:"order_count,string"`
+}

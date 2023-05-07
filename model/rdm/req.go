@@ -125,4 +125,16 @@ type (
 	CancelOrderReq struct {
 		OrderId int64 `json:"order_id,string" validate:"required,gte=1"`
 	}
+
+	// GetAllOrderReq 获取所有订单列表
+	GetAllOrderReq struct {
+		PageSize   int   `json:"page_size"`
+		PageNum    int   `json:"page_num"`
+		StatusList []int `json:"status_list" validate:"required,gte=1"`
+	}
+
+	// GetOrderCountReq 获取订单数量
+	GetOrderCountReq struct {
+		StatusList []int `json:"status_list" validate:"required,gte=1"`
+	}
 )

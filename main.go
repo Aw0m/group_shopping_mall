@@ -98,6 +98,8 @@ func main() {
 		orderGroup.POST("/get_order_list", middleware.Authorize(), order.GetOrderList)             // 获取用户订单列表
 		orderGroup.POST("/get_order_detail", middleware.Authorize(), order.GetOrderDetail)         // 获取订单详情
 		orderGroup.POST("/cancel_order", middleware.Authorize(), order.CancelOrder)                // 取消订单
+		orderGroup.POST("/get_all_order", order.GetAllOrder)                                       // 获取所有订单
+		orderGroup.POST("/get_order_count", order.GetOrderCount)                                   // 获取订单数量
 	}
 	err := r.Run(fmt.Sprintf(":%d", port))
 	if err != nil {
