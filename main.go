@@ -52,6 +52,8 @@ func main() {
 	{
 		userGroup.POST("/get_userinfo", user.GetUserinfo)
 		userGroup.POST("/update_userinfo", user.UpdateUserinfo)
+		userGroup.POST("/get_user_list", user.GetUserList) // 获取用户列表，并分页
+		userGroup.POST("/get_user_count", user.GetUserCount)
 	}
 
 	// 自提点

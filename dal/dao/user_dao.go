@@ -58,15 +58,6 @@ func BatchUpdateUsers(_ context.Context, db *gorm.DB, userIds []int64, userMap m
 	return nil
 }
 
-func UpdateUser(_ context.Context, db *gorm.DB, user *bdm.User) error {
-	userMap := getUserMap(user)
-	res := db.Model(&rdm.User{}).Where("user_id = ?", user.UserId).Updates(userMap)
-	if res.Error != nil {
-		return errors.Errorf("update user fail! err:%s", res.Error.Error())
-	}
-	return nil
-}
-
 // gorm更新0值的字段，总是失败，所以需要自己构造map
 func getUserMap(user *bdm.User) map[string]interface{} {
 	userMap := make(map[string]interface{})
@@ -78,57 +69,6 @@ func getUserMap(user *bdm.User) map[string]interface{} {
 	userMap["phone_num"] = user.PhoneNum
 	userMap["address_id"] = user.AddressId
 	return userMap
-}
-
-// FindUserByClubIdWithOffset 分页查询指定clubId的User
-func FindUserByClubIdWithOffset(_ context.Context, clubId int64, limit, offset int, keyword string) (userList []bdm.User, retErr error) {
-	db := client_db.GetDB()
-	var rdmList []rdm.User
-	res := db.Where("club_id = ? AND (user_id = ? OR username LIKE ?)", clubId, keyword, "%"+keyword+"%").Limit(limit).Offset(offset).Find(&rdmList)
-	if res.Error != nil {
-		if errors.Is(res.Error, gorm.ErrRecordNotFound) {
-			return nil, nil
-		}
-		return nil, errors.Errorf("query from table user fail! err:%s", res.Error.Error())
-	}
-
-	for _, u := range rdmList {
-		userList = append(userList, convertor.UserRdmToBdm(u))
-	}
-	return userList, nil
-}
-
-func FindUserByClubId(_ context.Context, db *gorm.DB, clubId int64) ([]bdm.User, error) {
-	var rdmList []rdm.User
-	res := db.Model(&rdm.User{}).Where("club_id = ?", clubId).Find(&rdmList)
-	if res.Error != nil {
-		if errors.Is(res.Error, gorm.ErrRecordNotFound) {
-			return nil, nil
-		}
-		return nil, errors.Errorf("query from table user fail! err:%s", res.Error.Error())
-	}
-
-	var userList []bdm.User
-	for _, u := range rdmList {
-		userList = append(userList, convertor.UserRdmToBdm(u))
-	}
-	return userList, nil
-}
-
-// FindUserByClubIdAndUserId 查询指定clubId和userId的User
-func FindUserByClubIdAndUserId(_ context.Context, clubId, userId int64) (*bdm.User, error) {
-	db := client_db.GetDB()
-	userRdm := new(rdm.User)
-	res := db.Where("club_id = ? AND user_id = ?", clubId, userId).First(userRdm)
-	if res.Error == nil {
-		u := convertor.UserRdmToBdm(*userRdm)
-		return &u, nil
-	}
-
-	if errors.Is(res.Error, gorm.ErrRecordNotFound) {
-		return nil, nil
-	}
-	return nil, errors.Errorf("query from table user err! err:%s", res.Error.Error())
 }
 
 // FindUserByUserId 查询指定userId的User
@@ -147,20 +87,25 @@ func FindUserByUserId(_ context.Context, userId int64) (*bdm.User, error) {
 	return nil, errors.Errorf("query from table user err! err:%s", res.Error.Error())
 }
 
-// BatchGetUserByIdList 批量查询指定id的user
-func BatchGetUserByIdList(_ context.Context, idList []int64) (userList []bdm.User, retErr error) {
-	db := client_db.GetDB()
-	var rdmList []rdm.User
-	res := db.Where("user_id IN ?", idList).Find(&rdmList)
+func GetUserWithOffset(ctx context.Context, db *gorm.DB, offset, limit int) ([]bdm.User, error) {
+	userRdms := make([]rdm.User, 0)
+	res := db.Model(&rdm.User{}).Offset(offset).Limit(limit).Find(&userRdms)
 	if res.Error != nil {
-		if errors.Is(res.Error, gorm.ErrRecordNotFound) {
-			return nil, nil
-		}
-		return nil, errors.Errorf("query from table user fail! err:%s", res.Error.Error())
+		return nil, errors.Errorf("query from table user err! err:%s", res.Error.Error())
 	}
 
-	for _, u := range rdmList {
-		userList = append(userList, convertor.UserRdmToBdm(u))
+	users := make([]bdm.User, 0)
+	for _, userRdm := range userRdms {
+		users = append(users, convertor.UserRdmToBdm(userRdm))
 	}
-	return userList, nil
+	return users, nil
+}
+
+func GetUserCount(ctx context.Context, db *gorm.DB) (int64, error) {
+	var count int64
+	res := db.Model(&rdm.User{}).Count(&count)
+	if res.Error != nil {
+		return 0, errors.Errorf("query from table user err! err:%s", res.Error.Error())
+	}
+	return count, nil
 }

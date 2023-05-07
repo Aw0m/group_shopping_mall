@@ -27,6 +27,18 @@ type AddShoppingAddressReq struct {
 	DetailInfo  string `json:"detail_info"`
 }
 
+// user
+type (
+	// GetUserCountReq 获取用户数量
+	GetUserCountReq struct {
+	}
+
+	GetUserListReq struct {
+		PageNum  int `json:"page_num" validate:"required,gte=1"`
+		PageSize int `json:"page_size" validate:"required,gte=1"`
+	}
+)
+
 // cart
 type (
 	// GetCartListReq 获取购物车列表

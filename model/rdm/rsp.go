@@ -125,3 +125,11 @@ type GetOrderCountRsp struct {
 
 type UpdateOrderInfoRsp struct {
 }
+
+type GetUserCountRsp struct {
+	UserCount int64 `json:"user_count,string"`
+}
+
+type GetUserListRsp struct {
+	UserList []bdm.User `json:"user_list"`
+}
