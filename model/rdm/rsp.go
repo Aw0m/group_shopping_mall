@@ -111,3 +111,6 @@ type CancelOrderRsp struct {
 
 type AddCategoryRsp struct {
 }
+
+type DeleteCategoryRsp struct {
+}

@@ -1,6 +1,8 @@
 package dao
 
 import (
+	"context"
+
 	"github.com/gin-gonic/gin"
 	"github.com/pkg/errors"
 	"gorm.io/gorm"
@@ -10,7 +12,7 @@ import (
 	"group_shopping_mall/model/rdm"
 )
 
-func GetCategoryList(ctx *gin.Context, db *gorm.DB) (categoryList []bdm.Category, retErr error) {
+func GetCategoryList(ctx context.Context, db *gorm.DB) (categoryList []bdm.Category, retErr error) {
 	categoryRdmList := make([]rdm.Category, 0)
 	res := db.WithContext(ctx).Find(&categoryRdmList)
 	if res.Error != nil {
@@ -32,6 +34,15 @@ func InsertCategory(ctx *gin.Context, db *gorm.DB, category bdm.Category) (retEr
 	res := db.WithContext(ctx).Create(&categoryRdm)
 	if res.Error != nil {
 		return errors.Errorf("create category err! err:%s", res.Error.Error())
+	}
+	return nil
+}
+
+// UpdateCategory 更新category
+func UpdateCategory(_ context.Context, db *gorm.DB, categoryId int64, updateMap map[string]any) error {
+	res := db.Model(&rdm.Category{}).Where("category_id = ?", categoryId).Updates(updateMap)
+	if res.Error != nil {
+		return errors.Errorf("update category fail! err:%s", res.Error.Error())
 	}
 	return nil
 }

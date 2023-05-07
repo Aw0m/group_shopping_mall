@@ -84,7 +84,7 @@ func main() {
 	{
 		categoryGroup.POST("/get_category_list", category.GetCategoryList) // 获取分类列表
 		categoryGroup.POST("/add_category", category.AddCategory)          // 添加分类"
-
+		categoryGroup.POST("/delete_category", category.DeleteCategory)    // 删除分类
 	}
 
 	// 订单

@@ -72,6 +72,11 @@ type (
 	AddCategoryReq struct {
 		CategoryName string `json:"category_name" validate:"required,max=16"`
 	}
+
+	// DeleteCategoryReq 删除分类
+	DeleteCategoryReq struct {
+		CategoryId int64 `json:"category_id,string" validate:"required,gte=1"`
+	}
 )
 
 // order
