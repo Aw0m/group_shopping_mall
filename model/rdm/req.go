@@ -137,4 +137,19 @@ type (
 	GetOrderCountReq struct {
 		StatusList []int `json:"status_list" validate:"required,gte=1"`
 	}
+
+	UpdateOrderInfoReq struct {
+		OrderId             int64   `json:"order_id,string" validate:"required,gte=1"`
+		SellerName          string  `json:"seller_name"`
+		CommodityName       string  `json:"commodity_name"`
+		DeliverymanName     string  `json:"deliveryman_name"`
+		DeliverymanPhoneNum string  `json:"deliveryman_phone_num"`
+		PhoneNum            string  `json:"phone_num"`
+		ConsigneeName       string  `json:"consignee_name"`
+		AddressDetailInfo   string  `json:"address_detail_info"`
+		Price               float64 `json:"price" validate:"required,gte=1"`
+		Quantity            int     `json:"quantity" validate:"required,gte=1"`
+		Status              int     `json:"status" validate:"required,gte=1,lte=4"`
+		IsDeleted           bool    `json:"is_deleted"`
+	}
 )

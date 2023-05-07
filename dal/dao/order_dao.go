@@ -111,7 +111,6 @@ func GetOrdersWithOffset(_ context.Context, db *gorm.DB, customerId int64, statu
 func GetAllOrdersWithOffset(_ context.Context, db *gorm.DB, statusList []int, limit, offset int) ([]bdm.Order, error) {
 	var orderList []rdm.Order
 	res := db.Where("status in ?", statusList).
-		Where("is_deleted = ?", false).
 		Order("-update_time").
 		Limit(limit).
 		Offset(offset).
@@ -134,7 +133,6 @@ func GetAllOrdersWithOffset(_ context.Context, db *gorm.DB, statusList []int, li
 func GetOrderCount(_ context.Context, db *gorm.DB, statusList []int) (count int64, retErr error) {
 	res := db.Model(&rdm.Order{}).
 		Where("status in ?", statusList).
-		Where("is_deleted = ?", false).
 		Count(&count)
 	if res.Error != nil {
 		return 0, errors.Errorf("get order count fail! err:%s", res.Error.Error())

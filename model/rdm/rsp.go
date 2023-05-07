@@ -122,3 +122,6 @@ type GetAllOrderRsp struct {
 type GetOrderCountRsp struct {
 	OrderCount int64 `json:"order_count,string"`
 }
+
+type UpdateOrderInfoRsp struct {
+}

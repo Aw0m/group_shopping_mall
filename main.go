@@ -100,6 +100,7 @@ func main() {
 		orderGroup.POST("/cancel_order", middleware.Authorize(), order.CancelOrder)                // 取消订单
 		orderGroup.POST("/get_all_order", order.GetAllOrder)                                       // 获取所有订单
 		orderGroup.POST("/get_order_count", order.GetOrderCount)                                   // 获取订单数量
+		orderGroup.POST("/update_order_info", order.UpdateOrderInfo)                               // 更新订单信息
 	}
 	err := r.Run(fmt.Sprintf(":%d", port))
 	if err != nil {
