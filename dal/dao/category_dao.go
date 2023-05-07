@@ -12,7 +12,10 @@ import (
 	"group_shopping_mall/model/rdm"
 )
 
-func GetCategoryList(ctx context.Context, db *gorm.DB) (categoryList []bdm.Category, retErr error) {
+func GetCategoryList(ctx context.Context, db *gorm.DB, withDeleted bool) (categoryList []bdm.Category, retErr error) {
+	if !withDeleted {
+		db = db.Where("is_deleted = ?", false)
+	}
 	categoryRdmList := make([]rdm.Category, 0)
 	res := db.WithContext(ctx).Find(&categoryRdmList)
 	if res.Error != nil {

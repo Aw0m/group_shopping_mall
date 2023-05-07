@@ -10,7 +10,7 @@ import (
 )
 
 func GetCategoryList(ctx *gin.Context) (retCategoryList []bdm.Category, retErr error) {
-	categoryList, err := dao.GetCategoryList(ctx, client_db.GetDB())
+	categoryList, err := dao.GetCategoryList(ctx, client_db.GetDB(), false)
 	if err != nil {
 		err = errors.WithMessage(err, "get category list from db err")
 		return nil, err
