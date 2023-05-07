@@ -108,3 +108,6 @@ type GetOrderDetailRsp struct {
 
 type CancelOrderRsp struct {
 }
+
+type AddCategoryRsp struct {
+}

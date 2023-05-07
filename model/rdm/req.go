@@ -67,6 +67,11 @@ type (
 	// GetCategoryListReq 获取分类列表
 	GetCategoryListReq struct {
 	}
+
+	// AddCategoryReq 添加分类
+	AddCategoryReq struct {
+		CategoryName string `json:"category_name" validate:"required,max=16"`
+	}
 )
 
 // order

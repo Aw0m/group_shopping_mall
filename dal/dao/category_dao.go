@@ -26,3 +26,12 @@ func GetCategoryList(ctx *gin.Context, db *gorm.DB) (categoryList []bdm.Category
 	}
 	return categoryList, nil
 }
+
+func InsertCategory(ctx *gin.Context, db *gorm.DB, category bdm.Category) (retErr error) {
+	categoryRdm := convertor.CategoryBdmToRdm(category)
+	res := db.WithContext(ctx).Create(&categoryRdm)
+	if res.Error != nil {
+		return errors.Errorf("create category err! err:%s", res.Error.Error())
+	}
+	return nil
+}

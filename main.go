@@ -83,6 +83,8 @@ func main() {
 	categoryGroup := r.Group("/category")
 	{
 		categoryGroup.POST("/get_category_list", category.GetCategoryList) // 获取分类列表
+		categoryGroup.POST("/add_category", category.AddCategory)          // 添加分类"
+
 	}
 
 	// 订单
