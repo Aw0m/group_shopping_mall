@@ -142,3 +142,6 @@ type GetCommodityCountRsp struct {
 type GetCommodityFromIDRsp struct {
 	Commodity bdm.Commodity `json:"commodity"`
 }
+
+type UpdateCommodityRsp struct {
+}

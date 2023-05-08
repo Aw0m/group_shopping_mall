@@ -70,3 +70,11 @@ func GetCommodityCount(ctx context.Context, db *gorm.DB) (int64, error) {
 	}
 	return count, nil
 }
+
+func UpdateCommodity(_ context.Context, db *gorm.DB, commodityId int64, updateMap map[string]any) error {
+	res := db.Model(&rdm.Commodity{}).Where("commodity_id = ?", commodityId).Updates(updateMap)
+	if res.Error != nil {
+		return errors.Errorf("update commodity fail! err:%s", res.Error.Error())
+	}
+	return nil
+}

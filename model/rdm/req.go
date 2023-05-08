@@ -79,6 +79,15 @@ type (
 	GetCommodityFromIDReq struct {
 		CommodityId int64 `json:"commodity_id,string"`
 	}
+
+	UpdateCommodityReq struct {
+		CommodityId     int64    `json:"commodity_id,string" validate:"required,gte=1"`
+		CommodityName   *string  `json:"commodity_name"`
+		Price           *float64 `json:"price,string"`
+		CategoryID      *int64   `json:"category_id,string"`
+		CommodityStatus *int     `json:"commodity_status"`
+		IsDeleted       *bool    `json:"is_deleted"`
+	}
 )
 
 // category

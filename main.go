@@ -80,6 +80,7 @@ func main() {
 		commodityGroup.POST("/get_commodity_from_category", commodity.GetCommodityFromCategory) // 获取商品列表
 		commodityGroup.POST("/get_commodity_count", commodity.GetCommodityCount)                // 获取商品数量"
 		commodityGroup.POST("/get_commodity_from_id", commodity.GetCommodityFromID)             // 获取商品单独的所有信息
+		commodityGroup.POST("/update_commodity", commodity.UpdateCommodity)                     // 更新商品信息
 	}
 
 	// 分类
