@@ -28,6 +28,7 @@ func GetCommodityDetail(ctx *gin.Context, commodityId int64) (commodityInfo rdm.
 	commodityInfo = rdm.CommodityInfo{
 		CommodityId:   commodityId,
 		CommodityName: commodity.CommodityName,
+		CategoryId:    commodity.CategoryId,
 		Price:         commodity.Price,
 		ImageURL:      commodity.ImageURL,
 	}
