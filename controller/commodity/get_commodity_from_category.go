@@ -18,7 +18,7 @@ func GetCommodityFromCategory(ctx *gin.Context) {
 	}
 
 	rsp := new(rdm.GetCommodityFromCategoryRsp)
-	rsp.CommodityList, err = biz.GetCommodityFromCategory(ctx, req.CategoryId, req.PageNum, req.PageSize)
+	rsp.CommodityList, err = biz.GetCommodityFromCategory(ctx, req.CategoryId, req.PageNum, req.PageSize, req.WithDeleted)
 	utils.HttpResp(ctx, rsp, http.StatusInternalServerError, err)
 	return
 }

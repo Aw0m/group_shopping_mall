@@ -68,9 +68,10 @@ type (
 	}
 
 	GetCommodityFromCategoryReq struct {
-		CategoryId int64 `json:"category_id,string"`
-		PageSize   int   `json:"page_size"`
-		PageNum    int   `json:"page_num"`
+		CategoryId  int64 `json:"category_id,string"`
+		PageSize    int   `json:"page_size"`
+		PageNum     int   `json:"page_num"`
+		WithDeleted bool  `json:"with_deleted"`
 	}
 
 	GetCommodityCountReq struct {
