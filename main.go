@@ -79,6 +79,8 @@ func main() {
 		commodityGroup.POST("/get_commodity_detail", commodity.GetCommodityDetail)              // 获取一个商品的信息信息
 		commodityGroup.POST("/add_to_cart", middleware.Authorize(), commodity.AddToCart)        // 添加到购物车
 		commodityGroup.POST("/get_commodity_from_category", commodity.GetCommodityFromCategory) // 获取商品列表
+		commodityGroup.POST("/get_commodity_count", commodity.GetCommodityCount)                // 获取商品数量"
+		commodityGroup.POST("/get_commodity_from_id", commodity.GetCommodityFromID)             // 获取商品单独的所有信息
 	}
 
 	// 分类

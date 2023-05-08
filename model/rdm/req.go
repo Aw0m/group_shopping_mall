@@ -72,6 +72,13 @@ type (
 		PageSize   int   `json:"page_size"`
 		PageNum    int   `json:"page_num"`
 	}
+
+	GetCommodityCountReq struct {
+	}
+
+	GetCommodityFromIDReq struct {
+		CommodityId int64 `json:"commodity_id,string"`
+	}
 )
 
 // category

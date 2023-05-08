@@ -40,6 +40,7 @@ type (
 	CommodityInfo struct {
 		CommodityId   int64   `json:"commodity_id,string"`
 		CommodityName string  `json:"commodity_name"`
+		CategoryId    int64   `json:"category_id,string"`
 		Price         float64 `json:"price"`
 		ImageURL      string  `json:"image_url"`
 	}
@@ -132,4 +133,12 @@ type GetUserCountRsp struct {
 
 type GetUserListRsp struct {
 	UserList []bdm.User `json:"user_list"`
+}
+
+type GetCommodityCountRsp struct {
+	CommodityCount int64 `json:"commodity_count,string"`
+}
+
+type GetCommodityFromIDRsp struct {
+	Commodity bdm.Commodity `json:"commodity"`
 }

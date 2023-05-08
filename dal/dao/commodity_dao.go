@@ -61,3 +61,12 @@ func GetCommodityFromCategory(ctx context.Context, db *gorm.DB, categoryId int64
 	}
 	return categoryList, nil
 }
+
+func GetCommodityCount(ctx context.Context, db *gorm.DB) (int64, error) {
+	var count int64
+	res := db.Model(&rdm.Commodity{}).Count(&count)
+	if res.Error != nil {
+		return 0, errors.Errorf("query from table user err! err:%s", res.Error.Error())
+	}
+	return count, nil
+}
